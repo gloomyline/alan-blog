@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+npm-error.log
+yarn-error.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# lock files
+yarn.lock
