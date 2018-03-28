@@ -33,6 +33,7 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
       /**
        * Import global css files by preprocessor stylus
        */
@@ -44,6 +45,29 @@ module.exports = {
           '~assets/styles/main.styl'
         ]
       })
+      
+      /**
+       * Extend the normal vue-loader configuration by adding iview-loader
+       */
+      const oldVueLoaderConfiguration = config.module.rules[0]
+      const newVueLoaderConfiguration = {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: oldVueLoaderConfiguration.options 
+          },
+          {
+            loader: 'iview-loader',
+            options: {
+              // In order to use prefixed tags in IView,
+              // such as '<i-row>' which is the same as <Row>
+              prefix: true
+            }
+          }
+        ]
+      }
+      config.module.rules[0] = newVueLoaderConfiguration
     }
   },
   plugins: [
