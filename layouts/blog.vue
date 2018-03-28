@@ -24,11 +24,12 @@
           MenuItem(name='1-3')
             Icon(type='settings')
             span About
-      Layout
+      Layout(:class='rightLayoutClasses')
         Header(class='layout-header-bar')
           Icon(:class='rotateIcon' @click.native='collapsedSider' type='navicon-round' size='24')
         Content(class='layout-conetent')
-          nuxt
+          Card(:style="{height: '600px'}")
+            nuxt
 </template>
 
 <script>
@@ -47,6 +48,9 @@
       },
       menuitemClasses () {
         return ['menu-item', this.isCollapsed ? 'collapsed-menu' : '']
+      },
+      rightLayoutClasses () {
+        return ['right-layout', this.isCollapsed ? 'collapsed-layout' : '']
       }
     },
     methods: {
@@ -81,57 +85,72 @@
   border: 1px solid $color-grey
   background-color: $color-white
   overflow: hidden
-  .self-intro
-    margin-bottom: 32px
-    padding: 32px 24px 0 24px
-    img
-      transform: rotate(0)
-      transition: transform .8s ease .2s
-    .intro-list
-      padding: 12px 0 12px 
-      text-align: left
-      line-height: 1.6em
-      color: $color-grey
-      overflow: hidden
-      text-overflow: ellipsis
-      white-space: nowrap
-      transition: width .2s ease .2s
-    &.collapsed-intro
+  .ivu-layout-sider
+    fixed: left bottom
+    height: 100vh
+    overflow: auto
+    .self-intro
+      margin-bottom: 32px
+      padding: 32px 24px 0 24px
       img
-        transform: rotate(360deg)
-  .menu-item
-    span
-      display: inline-block
-      vertical-align: bottom
-      width: 69px
-      overflow: hidden
-      text-overflow: hidden
-      white-space: nowrap
-      transition: width .2s ease .2s
-    i
-      font-size: 16px
-      transform: translate3d(0, 0, 0)
-      transition: font-size .2s ease, transform .2s ease
-    &.collapsed-menu
+        transform: rotate(0)
+        transition: transform .8s ease .2s
+      .intro-list
+        width: 180px
+        padding: 12px 0 12px 
+        text-align: left
+        line-height: 1.6em
+        color: $color-grey
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        transition: all .2s ease
+        box-sizing: border-box
+      &.collapsed-intro
+        img
+          transform: rotate(360deg)
+        .intro-list
+          width: 0
+          opacity: 0
+    .menu-item
       span
-        width: 0px
-        transition: width .2s ease
+        display: inline-block
+        vertical-align: bottom
+        width: 69px
+        overflow: hidden
+        text-overflow: hidden
+        white-space: nowrap
+        transition: width .2s ease .2s
       i
-        vertical-align: middle
-        font-size: 22px
-        transform: translate3d(5px, 0, 0)
-        transition: font-size .2s ease .2s, transform .2s ease .2s
-  .layout-header-bar
-    padding: 0
-    background-color: white
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1)
-    .menu-icon
-      margin: 20px 20px 0 20px
-      transition: all .3s
-      &.rotate-icon
-        transform: rotate(-90deg)
-  .layout-conetent
-    min-height: 260px
-    margin: 20px
-    background-color: white
+        font-size: 16px
+        transform: translate3d(0, 0, 0)
+        transition: font-size .2s ease, transform .2s ease
+      &.collapsed-menu
+        span
+          width: 0px
+          transition: width .2s ease
+        i
+          vertical-align: middle
+          font-size: 22px
+          transform: translate3d(5px, 0, 0)
+          transition: font-size .2s ease .2s, transform .2s ease .2s
+  .right-layout
+    margin-left: 240px
+    transition: margin .2s ease
+    &.collapsed-layout
+      margin-left: 75px
+      transition: margin .2s ease
+    .layout-header-bar
+      padding: 0
+      background-color: white
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .1)
+      .menu-icon
+        margin: 20px 20px 0 20px
+        transition: all .3s
+        &.rotate-icon
+          transform: rotate(-90deg)
+    .layout-conetent
+      min-height: 260px
+      margin: 20px
+      background-color: white
 </style>
