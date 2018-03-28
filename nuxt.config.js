@@ -21,10 +21,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    /*
-    ** Run ESLint on save
-    */
     extend (config, { isDev, isClient }) {
+      /*
+      ** Run ESLint on save
+      */
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -33,16 +33,18 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    },
-    loaders: [
-      {
-        test: /.vue/,
-        loader: 'iview-loader',
-        options: {
-          prefix: true
-        }
-      }
-    ]
+      /**
+       * Import global css files by preprocessor stylus
+       */
+      // find the stylus loader in vue-loader options
+      const stylus = config.module.rules[0].options.loaders.stylus.find(e => e.loader === 'stylus-loader')
+      // extend default options
+      Object.assign(stylus.options, {
+        import: [
+          '~assets/styles/main.styl'
+        ]
+      })
+    }
   },
   plugins: [
     '~plugins/iview'

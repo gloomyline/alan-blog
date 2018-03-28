@@ -23,9 +23,13 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
+    "iview-loader": "^1.0.0",
     "pug": "^2.0.3",
     "pug-loader": "^2.3.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
+  },
+  "peerDependencies": {
+    "vue": "^2.5.16"
   }
 }
