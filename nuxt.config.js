@@ -45,7 +45,7 @@ module.exports = {
           '~assets/styles/main.styl'
         ]
       })
-      
+
       /**
        * Extend the normal vue-loader configuration by adding iview-loader
        */
@@ -68,7 +68,19 @@ module.exports = {
         ]
       }
       config.module.rules[0] = newVueLoaderConfiguration
-    }
+    },
+    postcss: [
+      require('postcss-nested')(),
+      require('postcss-responsive-type')(),
+      require('postcss-hexrgba')(),
+      require('autoprefixer')({
+        browsers: ['last 3 versions']
+      }),
+      // convert px to rem
+      require('postcss-px2rem')({
+        remUnit: 12
+      })
+    ]
   },
   plugins: [
     '~plugins/iview'
